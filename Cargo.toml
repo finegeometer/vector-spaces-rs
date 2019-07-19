@@ -1,0 +1,17 @@
+[package]
+name = "vector-spaces"
+version = "0.0.1"
+authors = ["finegeometer <finegeometer@gmail.com>"]
+edition = "2018"
+description = "nalgebra with more type safety: distinguish vector spaces of the same dimension"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/finegeometer/vector-spaces-rs"
+# readme = "./README.md"
+# keywords = 
+# categories = 
+
+[dependencies]
+
+nalgebra = "0.18"
+alga = { version = "0.9", default-features = false }
+num-traits = { version = "0.2", default-features = false }
