@@ -61,10 +61,10 @@ impl<N: Scalar, X: Space, A: Space, B: Space> Linear<N, X, (A, B)> where
 	<(A, B) as Space>::Dim: na::DimSub<B::Dim, Output = A::Dim>,
 {
 	pub fn first_output(self) -> Linear<N, X, A> {
-		Linear(self.0.remove_fixed_rows::<B::Dim>(0))
+		Linear(self.0.remove_fixed_rows::<B::Dim>(B::Dim::dim()))
 	}
 	pub fn second_output(self) -> Linear<N, X, B> {
-		Linear(self.0.remove_fixed_rows::<A::Dim>(B::Dim::dim()))
+		Linear(self.0.remove_fixed_rows::<A::Dim>(0))
 	}
 	pub fn combine_outputs(a: Linear<N, X, A>, b: Linear<N, X, B>) -> Self {
 		Linear(na::MatrixMN::<N, <(A, B) as Space>::Dim, X::Dim>::from_fn(|r, c| {
@@ -86,10 +86,10 @@ impl<N: Scalar, X: Space, A: Space, B: Space> Linear<N, (A, B), X> where
 	<(A, B) as Space>::Dim: na::DimSub<B::Dim, Output = A::Dim>,
 {
 	pub fn first_input(self) -> Linear<N, A, X> {
-		Linear(self.0.remove_fixed_columns::<B::Dim>(0))
+		Linear(self.0.remove_fixed_columns::<B::Dim>(B::Dim::dim()))
 	}
 	pub fn second_input(self) -> Linear<N, B, X> {
-		Linear(self.0.remove_fixed_columns::<A::Dim>(B::Dim::dim()))
+		Linear(self.0.remove_fixed_columns::<A::Dim>(0))
 	}
 	pub fn combine_inputs(a: Linear<N, A, X>, b: Linear<N, B, X>) -> Self {
 		Linear(na::MatrixMN::<N, X::Dim, <(A, B) as Space>::Dim>::from_fn(|r, c| {
