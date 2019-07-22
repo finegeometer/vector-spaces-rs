@@ -61,7 +61,7 @@ impl<N: Scalar, X: Space, A: Space, B: Space> Linear<N, X, (A, B)> where
 	<(A, B) as Space>::Dim: na::DimSub<B::Dim, Output = A::Dim>,
 {
 	pub fn first_output(self) -> Linear<N, X, A> {
-		Linear(self.0.remove_fixed_rows::<B::Dim>(B::Dim::dim()))
+		Linear(self.0.remove_fixed_rows::<B::Dim>(A::Dim::dim()))
 	}
 	pub fn second_output(self) -> Linear<N, X, B> {
 		Linear(self.0.remove_fixed_rows::<A::Dim>(0))
@@ -86,7 +86,7 @@ impl<N: Scalar, X: Space, A: Space, B: Space> Linear<N, (A, B), X> where
 	<(A, B) as Space>::Dim: na::DimSub<B::Dim, Output = A::Dim>,
 {
 	pub fn first_input(self) -> Linear<N, A, X> {
-		Linear(self.0.remove_fixed_columns::<B::Dim>(B::Dim::dim()))
+		Linear(self.0.remove_fixed_columns::<B::Dim>(A::Dim::dim()))
 	}
 	pub fn second_input(self) -> Linear<N, B, X> {
 		Linear(self.0.remove_fixed_columns::<A::Dim>(0))
