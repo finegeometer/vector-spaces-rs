@@ -71,7 +71,7 @@ impl<N: Scalar + Zero + One + ClosedAdd + ClosedMul, A: Space, B: Space, C: Spac
 {
 	type Output = Linear<N, A, C>;
 	fn mul(self, other: Linear<N, A, B>) -> Linear<N, A, C> {
-		Self(self.0 * other.0)
+		Linear(self.0 * other.0)
 	}
 }
 
