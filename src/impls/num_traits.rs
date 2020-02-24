@@ -31,6 +31,6 @@ impl<N: Scalar + ComplexField, A: Space, B: Space<Dim = A::Dim>> Inv for Linear<
 {
 	type Output = Linear<N, B, A>;
 	fn inv(self) -> Linear<N, B, A> {
-		Self(self.0.try_inverse().unwrap_or_else(zero))
+		Linear(self.0.try_inverse().unwrap_or_else(zero))
 	}
 }
